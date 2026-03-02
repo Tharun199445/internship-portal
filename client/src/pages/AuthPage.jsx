@@ -31,10 +31,12 @@ export default function AuthPage() {
     setError('');
 
     try {
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
       if (isLogin) {
         // Login with backend
         const endpoint = role === 'student' ? '/auth/student/login' : '/auth/company/login';
-        const response = await fetch(`http://localhost:5000/api${endpoint}`, {
+        const response = await fetch(`${apiBase}${endpoint}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: form.email, password: form.password }),
@@ -57,7 +59,7 @@ export default function AuthPage() {
           ? { name: form.name, email: form.email, password: form.password }
           : { company_name: form.company_name, email: form.email, password: form.password };
         
-        const response = await fetch(`http://localhost:5000/api${endpoint}`, {
+        const response = await fetch(`${apiBase}${endpoint}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),

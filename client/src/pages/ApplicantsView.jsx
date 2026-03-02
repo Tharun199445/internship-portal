@@ -81,7 +81,7 @@ export default function ApplicantsView() {
                 )}
                 <div className="applicant-meta">
                   <a
-                    href={`http://localhost:5000${app.resume_url}`}
+                    href={`${import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '') : 'http://localhost:5000'}${app.resume_url}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-outline btn-sm"
